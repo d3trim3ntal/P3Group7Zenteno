@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1800,7 +1800,7 @@ GameObject:
   m_Layer: 0
   m_Name: PlayerCam
   m_TagString: MainCamera
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1862,14 +1862,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 882202562}
-  m_LocalRotation: {x: 0.059354134, y: -0.003100793, z: -0.00023997654, w: 0.9982322}
-  m_LocalPosition: {x: 1.9926827, y: 13.46, z: 4.43386}
+  m_LocalRotation: {x: 0.059351, y: -0.003101516, z: -0.0002495901, w: 0.99823236}
+  m_LocalPosition: {x: 2, y: 13.46, z: 4.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 39194713}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 6.805, y: -0.359, z: -0.049}
+  m_LocalEulerAnglesHint: {x: 6.805, y: -0.359, z: -0.05}
 --- !u!1 &884536919
 GameObject:
   m_ObjectHideFlags: 0
