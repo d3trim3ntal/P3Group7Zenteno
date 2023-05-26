@@ -12,8 +12,8 @@ public class PlayerControllerr : MonoBehaviour
     public float gravity = 10f;
 
     public float lookSpeed = 2f;
-    public float lookXLimit = 50f;
-    public float lookXLimitTwo = 70f;
+    public float lookXLimit = 40f;
+    public float lookXLimitTwo = 60f;
 
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
