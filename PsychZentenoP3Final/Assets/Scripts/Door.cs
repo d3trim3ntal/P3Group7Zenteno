@@ -7,17 +7,22 @@ public class Door : MonoBehaviour
     public GameObject door_closed, door_opened, intText, lockedtext;
     public AudioSource open, close;
     public bool opened, locked;
+    public static bool keyfound;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        keyfound = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (keyfound == true)
+        {
+            locked = false;
+        }
+
     }
 
     void OnTriggerStay(Collider other)
