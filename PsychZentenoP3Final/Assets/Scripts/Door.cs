@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Door : MonoBehaviour
@@ -8,6 +9,7 @@ public class Door : MonoBehaviour
     public AudioSource open, close;
     public bool opened, locked;
     public static bool keyfound;
+    public GameObject timertxt, timerTextTwo;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +24,6 @@ public class Door : MonoBehaviour
         {
             locked = false;
         }
-
     }
 
     void OnTriggerStay(Collider other)
@@ -38,6 +39,8 @@ public class Door : MonoBehaviour
                     {
                         door_closed.SetActive(false);
                         door_opened.SetActive(true);
+                        timertxt.SetActive(false);
+                        timerTextTwo.SetActive(true);
                         intText.SetActive(false);
                         //open.Play();
                         StartCoroutine(repeat());
@@ -47,6 +50,8 @@ public class Door : MonoBehaviour
                 if(locked == true)
                 {
                     lockedtext.SetActive(true);
+                    timertxt.SetActive(true);
+                    timerTextTwo.SetActive(false);
                 }
             }
         }
