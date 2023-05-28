@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class MusicPlayer : MonoBehaviour
 {
-    public AudioSource AudioSource;
+    private AudioSource AudioSource;
+
+    public GameObject ObjectMusic;
 
     private float MusicVolume = 1f;
 
@@ -14,7 +16,8 @@ public class MusicPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AudioSource.Play();
+        ObjectMusic = GameObject.FindWithTag("GameMusic");
+        AudioSource = ObjectMusic.GetComponent<AudioSource>();
         MusicVolume = PlayerPrefs.GetFloat("volume");
         AudioSource.volume = MusicVolume;
         volumeSlider.value = MusicVolume;
