@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CuriosityKilledtheCat.unity
     guid: d864d31ef3568f64fa7bb5f81902ff0e
+  - enabled: 1
+    path: Assets/Scenes/Maze.unity
+    guid: 8126cd6f95429df40bbef99312adb0bf
   m_configObjects: {}

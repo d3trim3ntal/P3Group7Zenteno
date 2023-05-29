@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Key : MonoBehaviour
+public class CabinetKey : MonoBehaviour
 {
     public GameObject inticon, key;
-    public Door Door;
+    public Cabinet Cabinet;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +27,7 @@ public class Key : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.E))
             {
                 key.SetActive(false);
-                Door.keyfound = true;
+                Cabinet.keyfound = true;
                 inticon.SetActive(false);
             }
         }
