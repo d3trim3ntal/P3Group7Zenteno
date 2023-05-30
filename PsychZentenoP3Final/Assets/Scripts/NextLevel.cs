@@ -5,13 +5,11 @@ using UnityEngine;
 
 public class NextLevel : MonoBehaviour
 {
-    public string scenename;
-
     void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {
-            SceneManager.LoadScene(scenename);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }

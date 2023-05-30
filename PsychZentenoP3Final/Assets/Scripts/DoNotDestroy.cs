@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DoNotDestroy : MonoBehaviour
 {
-    // Start is called before the first frame update
     private void Awake()
     {
         GameObject[] musicObj = GameObject.FindGameObjectsWithTag("GameMusic");
@@ -14,11 +13,5 @@ public class DoNotDestroy : MonoBehaviour
             Destroy(this.gameObject);
         }
         DontDestroyOnLoad(this.gameObject);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -7,8 +7,14 @@ using UnityEngine;
 public class MazeTimer : MonoBehaviour
 {
     public float timerValue;
+    public GameObject gameOverPnl;
 
     public TextMeshProUGUI timerText;
+
+    void Start()
+    {
+        gameOverPnl.gameObject.SetActive(false);
+    }
 
     // Update is called once per frame
     void Update()
@@ -20,6 +26,7 @@ public class MazeTimer : MonoBehaviour
         else
         {
             timerValue = 0;
+            gameOverPnl.gameObject.SetActive(true);
         }
 
         DisplayTime(timerValue);

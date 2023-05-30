@@ -8,11 +8,12 @@ public class Timer : MonoBehaviour
 {
     public float timeValue = 900;
     public TextMeshPro timeText;
+    public GameObject gameOverPnl;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameOverPnl.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -25,6 +26,7 @@ public class Timer : MonoBehaviour
         else
         {
             timeValue = 0;
+            gameOverPnl.gameObject.SetActive(true);
         }
 
         DisplayTime(timeValue);
