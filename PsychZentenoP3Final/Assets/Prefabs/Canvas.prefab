@@ -2604,7 +2604,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acfaf6cabf6c6144a8f5799b6b75e956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UiText: {fileID: 2763877974286137228}
+  player: {fileID: 0}
+  keypadOB: {fileID: 0}
+  animateOB: {fileID: 0}
+  ANI: {fileID: 0}
+  textOB: {fileID: 0}
+  answer: 9743
+  button: {fileID: 0}
+  correct: {fileID: 0}
+  wrong: {fileID: 0}
+  animate: 0
 --- !u!1 &70845652229173566
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,56 +2,69 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Keypad : MonoBehaviour
 {
-    string Code = "9743";
-    string Nr = null;
-    int NrIndex = 0;
-    string alpha;
-    public TextMeshProUGUI UiText = null;
-    public GameObject doorOpened;
-    public GameObject doorClosed;
-    public GameObject keypadCanvas;
+    public GameObject player;
+    public GameObject keypadOB;
+
+    public GameObject animateOB;
+    public Animator ANI;
+
+    public TextMeshProUGUI textOB;
+    public string answer = "9743";
+
+    public AudioSource button;
+    public AudioSource correct;
+    public AudioSource wrong;
+
+    public bool animate;
 
     void Start()
     {
-        doorOpened.gameObject.SetActive(false);
-        doorClosed.gameObject.SetActive(true);
-        keypadCanvas.gameObject.SetActive(false);
+        keypadOB.SetActive(false);
     }
 
-    void OnTriggerEnter(Collider other)
+    public void Number(int number)
     {
-        if(other.CompareTag("Player"))
+        textOB.text += number.ToString();
+        button.Play();
+    }
+
+    public void Execute()
+    {
+        if (textOB.text == answer)
         {
-            keypadCanvas.gameObject.SetActive(true);
+            correct.Play();
+            textOB.text = "Right";
+        }
+        else
+        {
+            wrong.Play();
+            textOB.text = "Wrong";
         }
     }
 
-    public void CodeFunction(string Numbers)
+    public void Clear()
     {
-        NrIndex++;
-        Nr = Nr + Numbers;
-        UiText.text = Nr;
+        textOB.text = "";
+        button.Play();
     }
 
-    public void Enter()
+    public void Exit()
     {
-        if (Nr == Code)
+        keypadOB.SetActive(false);
+    }
+
+    public void Update()
+    {
+        if (textOB.text == "Right" && animate)
         {
-            keypadCanvas.gameObject.SetActive(false);
-            doorClosed.gameObject.SetActive(false);
-            doorOpened.gameObject.SetActive(true);
+            ANI.SetBool("animate", true);
+            Debug.Log("it's open");
         }
+ 
     }
 
-    public void Delete()
-    {
-        NrIndex++;
-        Nr = null;
-        UiText.text = Nr;
-    }
 }
