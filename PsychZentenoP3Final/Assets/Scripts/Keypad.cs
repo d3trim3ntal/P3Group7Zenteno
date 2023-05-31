@@ -6,65 +6,209 @@ using UnityEngine;
 
 public class Keypad : MonoBehaviour
 {
-    public GameObject player;
-    public GameObject keypadOB;
+    public GameObject safeCode, numtext, incorrecttext, correcttext;
+    public PlayerControllerr playerscript;
+    public Animator safeOpen;
+    public TextMeshProUGUI numTex;
+    public string codeString, correctCode;
+    public int stringCharacters = 0;
+    public bool interactable, codeDone, safeactive;
+    public Button but1, but2, but3, but4, but5, but6, but7, but8, but9, but0;
+    int token = 0;
+    public Rigidbody playerRigid;
 
-    public GameObject animateOB;
-    public Animator ANI;
-
-    public TextMeshProUGUI textOB;
-    public string answer = "9743";
-
-    public AudioSource button;
-    public AudioSource correct;
-    public AudioSource wrong;
-
-    public bool animate;
-
-    void Start()
+    void OnTriggerStay(Collider other)
     {
-        keypadOB.SetActive(false);
-    }
-
-    public void Number(int number)
-    {
-        textOB.text += number.ToString();
-        button.Play();
-    }
-
-    public void Execute()
-    {
-        if (textOB.text == answer)
+        if (other.CompareTag("MainCamera"))
         {
-            correct.Play();
-            textOB.text = "Right";
-        }
-        else
-        {
-            wrong.Play();
-            textOB.text = "Wrong";
+            if(codeDone == false)
+            {
+                interactable = true;
+            }
         }
     }
 
-    public void Clear()
+    void OnTriggerExit(Collider other)
     {
-        textOB.text = "";
-        button.Play();
-    }
-
-    public void Exit()
-    {
-        keypadOB.SetActive(false);
-    }
-
-    public void Update()
-    {
-        if (textOB.text == "Right" && animate)
+        if (other.CompareTag("MainCamera"))
         {
-            ANI.SetBool("animate", true);
-            Debug.Log("it's open");
+            interactable = interactable = false;
         }
- 
+    }
+
+    void Update()
+    {
+        if (interactable == true)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                safeCode.SetActive(true);
+                playerRigid.constraints = RigidbodyConstraints.FreezeAll;
+                playerscript.enabled = false;
+                safeactive = true;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                interactable = false;
+            }
+        }
+        if(safeactive == true)
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                numtext.SetActive(true);
+                correcttext.SetActive(false);
+                incorrecttext.SetActive(false);
+                stringCharacters = 0;
+                codeString = "";
+                but1.interactable = true;
+                but2.interactable = true;
+                but3.interactable = true;
+                but4.interactable = true;
+                safeactive = false;
+                but5.interactable = true;
+                but6.interactable = true;
+                but7.interactable = true;
+                token = 0;
+                but8.interactable = true;
+                but9.interactable = true;
+                but0.interactable = true;
+                safeCode.SetActive(false);
+                playerRigid.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX;
+                interactable = false;
+            }
+            numTex.text = codeString;
+            if (stringCharacters == 4)
+            {
+                if (codeString == correctCode)
+                {
+                    numtext.SetActive(false);
+                    correcttext.SetActive(true);
+                    but1.interactable = false;
+                    but2.interactable = false;
+                    but3.interactable = false;
+                    but4.interactable = false;
+                    but5.interactable = false;
+                    but6.interactable = false;
+                    but7.interactable = false;
+                    but8.interactable = false;
+                    but9.interactable = false;
+                    but0.interactable = false;
+                    codeDone = true;
+                    if (token == 0)
+                    {
+                        safeOpen.SetTrigger("open");
+                        StartCoroutine(endSesh());
+                        token = 1;
+                    }
+                }
+                else 
+                {
+                    numtext.SetActive(false);
+                    incorrecttext.SetActive(true);
+                    but1.interactable = false;
+                    but2.interactable = false;
+                    but3.interactable = false;
+                    but4.interactable = false;
+                    but5.interactable = false;
+                    but6.interactable = false;
+                    but7.interactable = false;
+                    but8.interactable = false;
+                    but9.interactable = false;
+                    but0.interactable = false;
+                    if (token == 0)
+                    {
+                        StartCoroutine(endSesh());
+                        token = 1;
+                    }
+
+                }
+            }
+        }
+    }
+    IEnumerator endSesh()
+    {
+        yield return new WaitForSeconds (2.5f);
+        numtext.SetActive(true);
+        correcttext.SetActive(false);
+        incorrecttext.SetActive(false);
+        stringCharacters = 0;
+        codeString = "";
+        but1.interactable = true;
+        but2.interactable = true;
+        but3.interactable = true;
+        but4.interactable = true;
+        safeactive = false;
+        but5.interactable = true;
+        but6.interactable = true;
+        but7.interactable = true;
+        token = 0;
+        but8.interactable = true;
+        but9.interactable = true;
+        but0.interactable = true;
+        safeCode.SetActive(false);
+        playerRigid.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX;
+        playerscript.enabled = true;
+        interactable = false;
+    }
+
+    public void pressedOne()
+    {
+        codeString = codeString + "1";
+        stringCharacters = stringCharacters + 1;
+    }
+
+    public void pressedTwo()
+    {
+        codeString = codeString + "2";
+        stringCharacters = stringCharacters + 1;
+    }
+
+    public void pressedThree()
+    {
+        codeString = codeString + "3";
+        stringCharacters = stringCharacters + 1;
+    }
+
+    public void pressedFour()
+    {
+        codeString = codeString + "4";
+        stringCharacters = stringCharacters + 1;
+    }
+
+    public void pressedFive()
+    {
+        codeString = codeString + "5";
+        stringCharacters = stringCharacters + 1;
+    }
+
+    public void pressedSix()
+    {
+        codeString = codeString + "6";
+        stringCharacters = stringCharacters + 1;
+    }
+
+    public void pressedSeven()
+    {
+        codeString = codeString + "7";
+        stringCharacters = stringCharacters + 1;
+    }
+
+    public void pressedEight()
+    {
+        codeString = codeString + "8";
+        stringCharacters = stringCharacters + 1;
+    }
+
+    public void pressedNine()
+    {
+        codeString = codeString + "9";
+        stringCharacters = stringCharacters + 1;
+    }
+
+    public void pressedZero()
+    {
+        codeString = codeString + "0";
+        stringCharacters = stringCharacters + 1;
     }
 
 }
