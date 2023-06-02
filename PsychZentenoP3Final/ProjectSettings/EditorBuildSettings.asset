@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Endingbad.unity
     guid: 1dce435d8b992f34eb8d1963a548be06
+  - enabled: 1
+    path: Assets/Scenes/GoodEnding.unity
+    guid: cf5668cb6de219846b418ce4f922cfb1
   m_configObjects: {}

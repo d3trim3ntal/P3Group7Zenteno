@@ -33,7 +33,7 @@ public class Cabinet : MonoBehaviour
                 if(locked == false)
                 {
                     intText.SetActive(true);
-                    if(Input.GetKeyDown(KeyCode.F))
+                    if(Input.GetKeyDown(KeyCode.E))
                     {
                         cabinet_closed.SetActive(false);
                         cabinet_opened.SetActive(true);

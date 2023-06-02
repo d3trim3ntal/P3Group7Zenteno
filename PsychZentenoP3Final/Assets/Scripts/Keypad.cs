@@ -32,7 +32,7 @@ public class Keypad : MonoBehaviour
     {
         if (other.CompareTag("MainCamera"))
         {
-            interactable = interactable = false;
+            interactable = false;
         }
     }
 
